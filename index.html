@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <link rel="stylesheet" href="css/styles.css" />
   <style>
-    /* ---------- Layout & fonts ---------- */
     :root{
       --glass-very-light: rgba(18,22,28,0.06); /* super transparent */
       --glass-light: rgba(18,22,28,0.12);
@@ -19,10 +18,8 @@
       --accent: #3b82f6;
     }
     html,body{height:100%;margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;background:transparent;scroll-behavior: smooth;}
-    /* ensure body content not hidden behind fixed header (header height accounted dynamically in JS too) */
-    body {padding-top: 72px;} /* fallback if js not available */
-
-    /* ---------- DNA canvas ---------- */
+    body {padding-top: 72px;} 
+    
     #dna-bg{
       position: fixed;
       inset: 0;
@@ -30,17 +27,16 @@
       height: 100%;
       z-index: -1;
       background: radial-gradient(ellipse at center, #071022 0%, #000 100%);
-      pointer-events: none; /* allow clicks through canvas */
+      pointer-events: none; 
     }
 
-    /* ---------- Header (fixed & glassy) ---------- */
     header{
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 60;
-      background: rgba(17,24,39,0.28) !important; /* glassy */
+      background: rgba(17,24,39,0.28) !important; 
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--glass-border);
@@ -48,9 +44,8 @@
     header .container { align-items: center; }
     #mobile-menu { background: rgba(17,24,39,0.28); backdrop-filter: blur(8px); }
 
-    /* ---------- Sections: super transparent glass ---------- */
     section {
-      background: var(--glass-very-light); /* SUPER transparent */
+      background: var(--glass-very-light); 
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid var(--glass-border);
@@ -64,10 +59,8 @@
     }
     section:hover { transform: translateY(-4px); box-shadow: 0 12px 60px rgba(2,6,23,0.6); }
 
-    /* keep contact gradient but glassy */
     section#contact{ background: linear-gradient(90deg, rgba(55,65,81,0.08), rgba(17,24,39,0.10)); }
 
-    /* Smaller inner cards (projects, about) slightly darker but still transparent */
     .inner-card {
       background: var(--glass-light);
       border-radius: 10px;
@@ -75,14 +68,11 @@
       padding: 1.2rem;
     }
 
-    /* ---------- Text colors ---------- */
     h1,h2,h3,h4 { color: rgba(235,245,255,0.98); }
     p, li, span { color: rgba(230,230,230,0.95); }
-
-    /* ---------- Avatar border ---------- */
+    
     .rounded-full { border: 3px solid rgba(59,130,246,0.10); }
 
-    /* ---------- Fade animations ---------- */
     .fade-in {
     opacity: 0;
     transform: translateY(18px);
@@ -107,37 +97,34 @@
     opacity: 1;
     transform: translateX(0) translateY(0);
     }
-    /* link hover */
+  
     a { transition: color 180ms ease, background 180ms ease, transform 180ms ease; }
     a:hover { transform: translateY(-1px); }
 
-#mobile-menu.show {
-  display: flex !important;
-  opacity: 1 !important;
-}
-
-.mobile-link-show {
-  opacity: 1 !important;
-  transform: translateX(0) !important;
-}
-
-.mobile-link-hide {
-  opacity: 0 !important;
-  transform: translateX(-20px) !important;
-}
-
-/* subtle blue glow when visible */
-@keyframes glow {
-  0% { text-shadow: 0 0 5px rgba(59,130,246,0.3); }
-  50% { text-shadow: 0 0 20px rgba(59,130,246,0.6); }
-  100% { text-shadow: 0 0 5px rgba(59,130,246,0.3); }
-}
-
-.mobile-link-show.glow {
-  animation: glow 2s ease-in-out infinite;
-}
-
-    /* small responsive tweaks */
+    #mobile-menu.show {
+      display: flex !important;
+      opacity: 1 !important;
+    }
+    
+    .mobile-link-show {
+      opacity: 1 !important;
+      transform: translateX(0) !important;
+    }
+    
+    .mobile-link-hide {
+      opacity: 0 !important;
+      transform: translateX(-20px) !important;
+    }
+    
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px rgba(59,130,246,0.3); }
+      50% { text-shadow: 0 0 20px rgba(59,130,246,0.6); }
+      100% { text-shadow: 0 0 5px rgba(59,130,246,0.3); }
+    }
+    
+    .mobile-link-show.glow {
+      animation: glow 2s ease-in-out infinite;
+    }
     @media (max-width:768px){
       section { width: 96%; margin: 1rem auto; padding: 1rem; }
       body { padding-top: 64px; }
@@ -146,10 +133,8 @@
 </head>
 <body class="bg-gray-900 text-gray-100 font-sans">
 
-  <!-- DNA background canvas (full page) -->
   <canvas id="dna-bg"></canvas>
 
-  <!-- Header (fixed) -->
   <header class="shadow-md">
     <div class="container mx-auto flex justify-between items-center py-4 px-6">
       <h1 class="text-2xl font-bold text-blue-400"><i class="fa-solid fa-code"></i> JB KENTH</h1>
@@ -163,7 +148,6 @@
       <button id="menu-btn" class="md:hidden text-blue-400 focus:outline-none"><i class="fa-solid fa-bars"></i></button>
     </div>
 
-<!-- Mobile Menu -->
 <div id="mobile-menu" class="inset-0 z-40 hidden flex-col items-center justify-center bg-black/60 backdrop-blur-2xl opacity-0 transition-opacity duration-700">
   <nav id="mobile-menu-content" class="flex flex-col items-center space-y-8">
     <a class="nav-link text-3xl font-semibold text-white hover:text-blue-400 transition-all duration-700 transform -translate-x-10 opacity-0" href="#about"><i class="fa-solid fa-user"></i> About</a>
@@ -173,10 +157,8 @@
   </nav>
 </div>
 
-
   </header>
 
-  <!-- Hero -->
   <section class="relative overflow-hidden py-20 fade-in">
     <div class="container relative z-10 mx-auto flex flex-col md:flex-row items-center px-6">
       <div class="md:w-1/2 fade-in-left">
@@ -190,7 +172,6 @@
     </div>
   </section>
 
-  <!-- About -->
   <section id="about" class="py-16 fade-in">
     <div class="container mx-auto px-6">
       <h3 class="text-3xl md:text-4xl font-bold mb-12 text-center text-blue-400">About Me</h3>
@@ -234,7 +215,6 @@
     </div>
   </section>
 
-  <!-- Skills -->
   <section id="skills" class="py-16 fade-in">
     <div class="container mx-auto px-6">
       <h3 class="text-3xl font-bold mb-8 text-center text-blue-400">Skills & Expertise</h3>
@@ -279,7 +259,6 @@
     </div>
   </section>
 
-  <!-- Projects -->
   <section id="projects" class="py-16 fade-in">
     <div class="container mx-auto px-6">
       <h3 class="text-3xl font-bold mb-8 text-center text-blue-400">Projects</h3>
@@ -333,7 +312,6 @@
     </div>
   </section>
 
-  <!-- Contact -->
   <section id="contact" class="bg-gradient-to-r from-gray-700 to-gray-900 text-white py-16 fade-in">
     <div class="container mx-auto px-6 text-center">
       <h3 class="text-3xl font-bold mb-6">Get in Touch</h3>
@@ -342,13 +320,12 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="bg-gray-950 text-gray-400 text-center py-6">
     <p>&copy; <span id="current-year"></span> <i class="fa-solid fa-code"></i> JB KENTH. All rights reserved.</p>
   </footer>
 
-  <!-- ---------- Scripts ---------- -->
   <script src="js/dna.js"></script>
   <script src="js/mobile.js"></script>
 </body>
 </html>
+
